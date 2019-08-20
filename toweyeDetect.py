@@ -4,6 +4,23 @@ import numpy as np
 from PIL import Image
 
 
+def getMatchPic(X,Y):
+    col=X.shape
+    empty = np.array(Image.new("RGB", (col, col)))
+    half=int(col/2)
+    empty[half:rows, 0:half] = [255, 255, 255]
+    for y in range(rows)[half:]:
+        for x in range(y):
+            empty[y,x]=[X[y,x]-Y[y,x],0,0]
+    for x in range(half):
+        for y in range(half):
+            if (x <= y):
+                empty[x,y] =[ X[x,y] - Y[x,y],0,0]
+    plt.imshow(empty)
+    pass
+
+
+
 path="F:/code/TwoEyeDetect/twoEyePic"
 pic="F:/code/TwoEyeDetect/twoEyePic/left2.png"
 picRight="F:/code/TwoEyeDetect/twoEyePic/right2.png"
@@ -12,33 +29,36 @@ right=np.array(Image.open(picRight))
 rows,cols,dims=left.shape
 half=int(rows/2)
 dataX=range(rows)
-# dataY=left[half,:,0]
-# dataZ=left[half,:,1]
-# dataW=left[half,:,2]
+dataY=left[half,:,0]
+dataZ=left[half,:,1]
+dataW=left[half,:,2]
 
-# plt.plot(dataX,dataY)
-# plt.plot(dataX,dataZ)
-# plt.plot(dataX,dataW)
+plt.plot(dataX,dataY)
+plt.plot(dataX,dataZ)
+plt.plot(dataX,dataW)
 
-# dataY=left[half,:,1]
-# dataZ=right[half,:,1]
+dataY=left[half,:,1]
+dataZ=right[half,:,1]
+
+getMatchPic(dataY,dataZ)
+
 # plt.plot(dataX,dataY,'.')
 # plt.plot(dataX,dataZ,'.')
-empty = np.array(Image.new("RGB",(rows,rows)))
-empty[half:rows,0:half]=[255,255,255]
-
-
-for x in range(half):
-    for y in range(half):
-        if(x<=y):
-            empty[x,y] = [255, 255, 255]
-
-for x in range(rows)[half:]:
-    for y in range(rows)[half:]:
-        if(x>=y):
-            empty[x,y] = [255, 255, 255]
-
-plt.imshow(empty)
+# empty = np.array(Image.new("RGB",(rows,rows)))
+# empty[half:rows,0:half]=[255,255,255]
+#
+#
+# for x in range(half):
+#     for y in range(half):
+#         if(x<=y):
+#             empty[x,y] = [255, 255, 255]
+#
+# for x in range(rows)[half:]:
+#     for y in range(rows)[half:]:
+#         if(x>=y):
+#             empty[x,y] = [255, 255, 255]
+#
+# plt.imshow(empty)
 
 # plt.plot(dataX,dataY,"g-s")
 # plt.plot(dataX,dataZ,"g-s")

@@ -21,24 +21,24 @@ def getMatchPic(Left,right):
             for c in range(3):
                 sum=sum+ abs(color[c])
             sum=sum/3
-            if(sum>2):
-                sum=255
+            # if(sum>2):
+            #     sum=255
             empty[y+picwidth,x+picwidth]=[sum,sum,sum]
     plt.imshow(empty)
     pass
 
 
-path="F:/code/TwoEyeDetect/twoEyePic"
-pic="F:/code/TwoEyeDetect/twoEyePic/left2.png"
-picRight="F:/code/TwoEyeDetect/twoEyePic/right2.png"
+pic="I:/code/TwoEyeDetect-master/twoEyePic/left1.png"
+picRight="I:/code/TwoEyeDetect-master/twoEyePic/right1.png"
 left=np.array(Image.open(pic))
 right=np.array(Image.open(picRight))
 rows,cols,dims=left.shape
-half=int(rows/2)
+# half=int(rows/2)
+half=200
 dataX=range(rows)
-dataY=left[half,:,0]
-dataZ=left[half,:,1]
-dataW=left[half,:,2]
+# dataY=left[half,:,0]
+# dataZ=left[half,:,1]
+# dataW=left[half,:,2]
 dataY=left[half,:,:]
 dataZ=right[half,:,:]
 getMatchPic(dataY,dataZ)
